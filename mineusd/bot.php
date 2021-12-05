@@ -1,6 +1,6 @@
 <?
 
-include(cfg.php);
+include('cfg.php');
 system('clear');
 
 function get($url,$ua){
@@ -40,7 +40,6 @@ $ar = curl_setopt_array($cf, $array);
 $get = curl_exec($cf);
 return $get;}
 
-
 $ua = array(
 "user-agent:".$useragent,
 "cookie:".$cookie
@@ -54,34 +53,34 @@ function pt($awal,$akhir){
 }
 //login
 $url = "https://mineusd.cf/user/check";
-get($url,$ua); // Sukses untuk untuk menampilkan halam loginnya
+get($url,$ua);
 $get = get($url,$ua);
 //Home or Dashboard 
 $url = "https://mineusd.cf/user/home";
-get($url,$ua); // Sukses untuk untuk menampilkan halam loginnya
+get($url,$ua);
 $get = get($url,$ua);
-$user = pt('<h3>USER: ','<br></h3>');
-echo $user."\n\n";
-$ball = pt('font-size:25px;">','</b><br>');
-echo $ball."\n\n";
+
+echo "Your Email    :".$email = pt('<h3>USER: ','<br></h3>',"\n\n");
+echo "Your Email    :".$ball = pt('font-size:25px;">','</b><br>',"\n\n");
+
+
 //Collect Reward
-while("true"){
+while(true){
 $url = "https://mineusd.cf/".pt('url: "..','"');
 $data = pt('id="mining_run" title="Miner Running">','</span>');
+
 $claim = post($url,$ua,$data);
 $claimsukses = pt("data= data + ' ","';");
 $claimfailed = pt("data='","';");
 $claimerror = pt('alert("','");');
-$reward = "0.00010000";
+$cm = "0.00010000";
 
 //Collect info
-if($data != $ball){
-    if($data <= $ball):
-    echo "  $claimsukses    |   + $ball \n";
-elseif($data === $ball):
-    echo "  $claimsukses    |   + $ball \n";
-elseif($ball <= $data):
-    echo "  $claimfailed    |   \n";
+if($data != $cm){
+    if($data < $cm):
+    echo "  $claimsukses    |   + $data \n";
+elseif($data > $cm):
+    echo "  $claimfailed    |   $data \n";
     endif;
 }else{
     echo "    $claimerror \n";
