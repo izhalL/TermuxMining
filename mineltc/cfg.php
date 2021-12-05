@@ -1,0 +1,22 @@
+<?
+
+$useragent = "xxxxxx";
+
+$cookie = "xxxxxxx";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
