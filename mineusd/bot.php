@@ -1,5 +1,6 @@
 <?
 
+include(cfg.php);
 system('clear');
 
 function get($url,$ua){
@@ -41,15 +42,12 @@ return $get;}
 
 
 $ua = array(
-"Host: mineusd.cf",
-"user-agent: Mozilla/5.0 (Linux; Android 11; M2102J20SG) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.46 Mobile Safari/537.36",
-"accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-"accept-language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
-"cookie: PHPSESSID=ps3hnutsc00ptho8feb6dnuht5"
+"user-agent:".$useragent,
+"cookie:".$cookie
 );
 
 function pt($awal,$akhir){
-    global $get;
+   global $get;
    $a = explode ($awal, $get);
    $a = explode($akhir,$a[1])[0];
    return $a;
