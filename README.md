@@ -1,0 +1,1 @@
+# TermuxMining
