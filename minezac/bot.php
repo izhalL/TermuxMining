@@ -1,111 +1,130 @@
 <?php
-//minezac
+//------------MineZac------------//
+error_reporting(0);
+$green = "\e[1;32m";
+$blue = "\e[1;34m";
+$red = "\e[1;31m";
+$white = "\33[37;1m";
+$yellow = "\e[1;33m";
+$cyan = "\e[1;36m";
+$purple = "\e[1;35m";
+$gray = "\e[1;30m";
+include('cfg.php');
 system('clear');
+sleep(2);
+
+function strip(){
+$green = "\e[1;32m";
+$blue = "\e[1;34m";
+$red = "\e[1;31m";
+$white = "\33[37;1m";
+$yellow = "\e[1;33m";
+$cyan = "\e[1;36m";
+$purple = "\e[1;35m";
+$gray = "\e[1;30m";
+
+echo$red."≠".$gray."=".$green."==".$green."==".$blue."==".$white."==".$yellow."==".$cyan."==".$purple."==".$gray."==".$red."==".$green."==".$blue."==".$white."==".$yellow."==".$cyan."==".$purple."==".$gray."==".$red."==".$green."==".$blue."==".$white."==".$yellow."==".$cyan."==".$purple."==".$gray."==".$green."==".$red."≠";
+}
+
 function get($url,$ua){
-  $ch=curl_init();
-    curl_setopt_array($ch, array(
-      CURLOPT_URL => $url,
-      CURLOPT_RETURNTRANSFER => 1,
-      CURLOPT_FOLLOWLOCATION => 1,
-      CURLOPT_HTTPHEADER => $ua,
-      CURLOPT_SSL_VERIFYPEER => 0,
-      CURLOPT_SSL_VERIFYHOST => 2,
-      CURLOPT_COOKIEJAR => "cookie.txt",
-      CURLOPT_COOKIEFILE => "cookie.txt",
-      CURLOPT_ENCODING => "gzip",
-  ));
-    return curl_exec($ch);
-    curl_close($ch);
-  
-}
+    //header sc
+$cf = curl_init();
+$array = array(
+    CURLOPT_URL => $url, 
+    CURLOPT_RETURNTRANSFER=> true,
+    CURLOPT_FOLLOWLOCATION => 1,
+    CURLOPT_SSL_VERIFYPEER => 0,
+    CURLOPT_SSL_VERIFYHOST => 2,
+    CURLOPT_HTTPHEADER => $ua,
+    CURLOPT_COOKIEJAR => "cookie.txt",
+    CURLOPT_COOKIEFILE => "cookie.txt",
+    CURLOPT_ENCODING => "gzip"
+    );
+$ar = curl_setopt_array($cf, $array);
+$get = curl_exec($cf);
+return $get;}
 function post($url,$ua,$data){
-  $ch=curl_init();
-    curl_setopt_array($ch, array(
-      CURLOPT_URL => $url,
-      CURLOPT_RETURNTRANSFER => 1,
-      CURLOPT_FOLLOWLOCATION => 1,
-      CURLOPT_HTTPHEADER => $ua,
-      CURLOPT_SSL_VERIFYPEER => 0,
-      CURLOPT_SSL_VERIFYHOST => 2,
-      CURLOPT_COOKIEJAR => "cookie.txt",
-      CURLOPT_COOKIEFILE => "cookie.txt",
-      CURLOPT_POST => true,
-      CURLOPT_POSTFIELDS => $data,
-      CURLOPT_ENCODING => "gzip",
-  ));
-    return curl_exec($ch);
-    curl_close($ch);
-  
-}
-  
-  $ua = array(
-    "Host: minezec.cf",
-    "upgrade-insecure-requests: 1",
-    "user-agent: Mozilla/5.0 (Linux; Android 11; M2102J20SG) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.46 Mobile Safari/537.36",
-    "accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-    "referer: https://minezec.cf/",
-    "accept-language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
-    "cookie: PHPSESSID=egiifhj2137p8fu0mflb9cjtbc; popcashpu=1"
-  );
-//-----DASHBOARD-----//
-  $url="https://minezec.cf/user/home?msg=%3Cdiv%20class=%27alert%20alert-success%27%3E%20Mining%20Statred%20Successfully!%3C/div%3E%3Cbr%3E";
-  get($url,$ua);
-  $get = get($url,$ua);
-///Information
-preg_match("#<div class='alert alert-success'>(.*?)</div><br>(.*?)<div class=(.*?)>#is",$get,$info);
-  echo"  ".$info[1]."\n\n\n";
-///Email
-preg_match("#<h3>(.*?)<br>(.*?)<b class='text-SUCCESS'>(.*?)</b>(.*?)<b style='color:red;'><div id='countdown' style='display:inline-block;'></div></b>(.*?)</h3>#is",$get,$name);
-  echo"   ".$name[1]."\n\n";
-  
-  #$gd = explode("data='You can Collect minimum ",$get)[1];
-  #$gdd = explode("ZEC';",$gd)[0];
-  
-//-----CLAIM-----//
-while("true"){
-  sleep(2);
-  system('clear');
-$data = "0.00000051";
-$url="https://minezec.cf/inc/data.php";
-$get = post($url,$ua,$data);
+    //header sc
+$cf = curl_init();
+$array = array(
+    CURLOPT_URL => $url,
+    CURLOPT_RETURNTRANSFER=> true,
+    CURLOPT_FOLLOWLOCATION => 1,
+    CURLOPT_SSL_VERIFYPEER => 0,
+    CURLOPT_SSL_VERIFYHOST => 2,
+    CURLOPT_HTTPHEADER => $ua,
+    CURLOPT_COOKIEJAR => "cookie.txt",
+    CURLOPT_COOKIEFILE => "cookie.txt",
+    CURLOPT_ENCODING => "gzip",
+    CURLOPT_POST => true,
+    CURLOPT_POSTFIELDS => $data
+    );
+$ar = curl_setopt_array($cf, $array);
+$get = curl_exec($cf);
+return $get;}
 
-//Collect Reward
-if($data >= 10){
-  $data= $data + ' USDT Collected Successfully!';
+$ua = array(
+"user-agent:".$useragent,
+"cookie:".$cookie
+);
+
+function pt($awal,$akhir){
+   global $get;
+   $a = explode ($awal, $get);
+   $a = explode($akhir,$a[1])[0];
+   return $a;
 }
-else if($data <=0.00000051){
-$data=' Please Wait, Currently In Collect ';
-}
-else if($data=='Failed'){
-$data=' You can Collect minimum 0.00000050 ZEC ';
-}
-error: function(){
-        alert("Data not transferred!");
-};
+
+//login & dashboard
+$url = "https://minezec.cf/user/home";
+get($url,$ua);
+$get = get($url,$ua);
+$email = pt('<h3>USER: ','<br>');
+$timer = pt('var _second = ',';');
+//Faucet Pay
+$url = "https://minezec.cf/user/pay";
+get($url,$ua);
+$get = get($url,$ua);
+$ball = pt('<span> ','   </span>');
+
+strip();
+echo "
+$white Your Email      $red:     $white $email
+$white Your Ballance   $red:     $white $ball Zac
+";
+strip();
+
 echo "\n\n";
+//Collect Reward
+while(true){
+$url = "https://mineusd.cf/inc/data.php";
+$data = 5000000;
+$get = post($url,$ua,$data);
+$tmr = $timer;
+
+$claimsukses = "Collected Successfully!";
+$claimfailed = "You can Collect minimum 0.00000050";
+$claimerror = "Data not transferred!";
+
+//Collect info
+if($data > 0){
+  if($tmr<=1)
+  echo " $claimsukses | [+]$ball \n";
+} else if($data=='Failed'){
+  echo " $claimfailed \n";
+  } else{
+    echo " $claimerror \n";
+}
+
+echo "\n";
 //Timer
-for ($i=60;$i>-1;$i--){
-  echo "\r                                   \r";
-  echo "\033[0;32m  • Tunggu Boss   "."\033[0;37m[ "."\033[0;32m".$i."\033[0;37m ]";
-if($i==60 or $i==56 or $i==50 or $i==46 or $i==40 or $i==36 or $i==30 or $i==26 or $i==20 or $i==5){echo " .";};
-if($i==58 or $i==55 or $i==49 or $i==44 or $i==39 or $i==33 or $i==28 or $i==23 or $i==10 or $i==1){echo " ..";};
-if($i==40 or $i==32 or $i==27 or $i==20 or $i==15 or $i==13 or $i==11 or $i==8 or $i==5 or $i==0){echo " ...\r";}
-   sleep(1);
+for($x=$tmr;$x>-1;$x--){echo "\r \r";
+echo$blue." Updating your balance in ".$red."[".$yellow.$x.$red."] ".$green."seconds ☕🚬";
+echo "\r \r";
+sleep(1);
+  
 }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
