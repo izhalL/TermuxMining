@@ -112,5 +112,3 @@ echo$green."Success sent payment to your ".$white."Express".$red."Crypto".$green
 }
 
 }
-
-
