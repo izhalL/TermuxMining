@@ -65,7 +65,8 @@ return $get;}
 
 $ua = array(
 "user-agent:".$useragent,
-"cookie:".$cookie
+"cookie:".$cookie_ec,
+"cookie:".$cookie_fp
 );
 
 function pt($awal,$akhir){
