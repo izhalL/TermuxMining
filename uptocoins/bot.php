@@ -63,11 +63,6 @@ $ar = curl_setopt_array($cf, $array);
 $get = curl_exec($cf);
 return $get;}
 
-$ua = array(
-"user-agent:".$useragent,
-"cookie:".$cookie_ec,
-"cookie:".$cookie_fp
-);
 
 function pt($awal,$akhir){
    global $get;
@@ -79,13 +74,15 @@ function pt($awal,$akhir){
 
 while(true){
 $url = $url_claim_fp;
-get($url,$ua);
+$ua = ["user-agent: ".$useragent,
+"cookie: ".$cookie_fp];
 $get = get($url, $ua);
 $tmrfp = pt('Time until next payout: ',' sec');
 
 
 $url = $url_claim_ec;
-get($url,$ua);
+$ua = ["user-agent: ".$useragent,
+"cookie: ".$cookie_ec];
 $get = get($url,$ua);
 $tmrec = pt("countdown('","',");
 
