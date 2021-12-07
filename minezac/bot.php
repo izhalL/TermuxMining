@@ -26,6 +26,26 @@ $gray = "\e[1;30m";
 echo$red."≠".$gray."=".$green."==".$green."==".$blue."==".$white."==".$yellow."==".$cyan."==".$purple."==".$gray."==".$red."==".$green."==".$blue."==".$white."==".$yellow."==".$cyan."==".$purple."==".$gray."==".$red."==".$green."==".$blue."==".$white."==".$yellow."==".$cyan."==".$purple."==".$gray."==".$green."==".$red."≠";
 }
 
+function sruput(){
+$green = "\e[1;32m";
+$blue = "\e[1;34m";
+$red = "\e[1;31m";
+$white = "\33[37;1m";
+$yellow = "\e[1;33m";
+$cyan = "\e[1;36m";
+$purple = "\e[1;35m";
+$gray = "\e[1;30m";
+
+echo$white." Sruput name      : ".$green."    MINEZAC\n";
+echo$white." Wallet           : ".$blue."    Faucet".$cyan."Pay".$ye."\n";
+echo$white." Sruput ver       : ".$green."    1.0 Beta\n";
+echo$white." Created by       : ".$green."    IzhalAkbar\n";
+echo$white." Supported by     : ".$green."    Telegram \n";
+echo$white." Beta Version     : ".$green."    1.0\n";
+
+}
+
+
 function get($url,$ua){
     //header sc
 $cf = curl_init();
@@ -87,10 +107,13 @@ get($url,$ua);
 $get = get($url,$ua);
 $ball = pt('<span> ','   </span>');
 
+
+strip();
+sruput();
 strip();
 echo "
-$white Your Email      $red:     $white $email
-$white Your Ballance   $red:     $white $ball Zac
+$white Your Email       $red:     $white $email
+$white Your Ballance    $red:     $white $ball ZAC
 ";
 strip();
 
@@ -100,21 +123,26 @@ while(true){
 $url = "https://mineusd.cf/inc/data.php";
 $data = 5000000;
 $get = post($url,$ua,$data);
-$tmr = $timer;
 
 $claimsukses = "Collected Successfully!";
 $claimfailed = "You can Collect minimum 0.00000050";
 $claimerror = "Data not transferred!";
+$tmr = $timer;
+$data = $claim;
 
 //Collect info
-if($data > 0){
-  if($tmr<=1)
-  echo " $claimsukses | [+]$ball \n";
-} else if($data=='Failed'){
-  echo " $claimfailed \n";
-  } else{
-    echo " $claimerror \n";
+if ($claim >=10010) {
+  echo "$claimsukses   | + $ball \n";
+} elseif ($claim==10010) {
+  echo "$claimsukses   | + $ball \n";
+} elseif ($tmr <=1) {
+  echo "$claimsukses   | + $ball \n";
+} elseif ($claim=='Failed') {
+  echo "    $claimfailed  \n";
+} else {
+  echo "    $claimerror \n";
 }
+
 
 echo "\n";
 //Timer
