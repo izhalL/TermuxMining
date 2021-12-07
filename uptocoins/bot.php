@@ -26,6 +26,26 @@ $gray = "\e[1;30m";
 echo$red."≠".$gray."=".$green."==".$green."==".$blue."==".$white."==".$yellow."==".$cyan."==".$purple."==".$gray."==".$red."==".$green."==".$blue."==".$white."==".$yellow."==".$cyan."==".$purple."==".$gray."==".$red."==".$green."==".$blue."==".$white."==".$yellow."==".$cyan."==".$purple."==".$gray."==".$green."==".$red."≠";
 }
 
+
+function sruput(){
+$green = "\e[1;32m";
+$blue = "\e[1;34m";
+$red = "\e[1;31m";
+$white = "\33[37;1m";
+$yellow = "\e[1;33m";
+$cyan = "\e[1;36m";
+$purple = "\e[1;35m";
+$gray = "\e[1;30m";
+
+echo$white." Sruput name        : ".$green."    UPTOCOIN\n";
+echo$white." Wallet             : ".$blue."    Faucet".$cyan."Pay".$yellow." || ".$white."Express".$red."Crypto\n";
+echo$white." Sruput ver         : ".$green."    1.0 Beta\n";
+echo$white." Created by         : ".$green."    IzhalAkbar\n";
+echo$white." Supported by       : ".$green."    Telegram \n";
+echo$white." Beta Version       : ".$green."    1.0\n";
+
+}
+
 function get($url,$ua){
     //header sc
 $cf = curl_init();
@@ -71,7 +91,10 @@ function pt($awal,$akhir){
    return $a;
 }
 
-
+strip();
+sruput();
+strip();
+echo "\n";
 while(true){
 $url = $url_claim_fp;
 $ua = ["user-agent: ".$useragent,
@@ -93,7 +116,8 @@ sleep(1);
 if($tmrfp < 1){
 
 $url = $url_claim_fp;
-get($url,$ua);
+$ua = ["user-agent: ".$useragent,
+"cookie: ".$cookie_fp];
 $get = get($url,$ua);
 
 
@@ -101,8 +125,9 @@ echo$green."Success sent payment to your ".$blue."Faucet".$cyan."Pay".$green." a
 
 }else if($tmrec < 1){
 
-$url = $url_claim_fp;
-get($url,$ua);
+$url = $url_claim_ec;
+$ua = ["user-agent: ".$useragent,
+"cookie: ".$cookie_ec];
 $get = get($url,$ua);
 
 echo$green."Success sent payment to your ".$white."Express".$red."Crypto".$green." account    \n";
